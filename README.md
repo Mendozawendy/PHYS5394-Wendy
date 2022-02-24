@@ -8,3 +8,4 @@ Solve computational challenges encountered in real applications using advanced o
 Understand some advanced methods in computational statistics (machine learning).
 
 Lab 2: Generate Sinousidal Signal and create a plot.  
+Lab 4: Generate 5 and 1/2 signal Nqyuist Frequency. 
