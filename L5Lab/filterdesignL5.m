@@ -37,11 +37,20 @@ b = fir1(filtOrder, (150)/(sampFreq/2), 'low'); % Pass frequencies below 150 Hz
 filtS1 = fftfilt(b, sigVec);
 
 % Design filter 2 to pass s2 through filter high and low passband
-b2 = fir1(filtOrder, [150/(sampFreq/2) 250/(sampFreq/2)], 'high'); % Pass frequencies above 150-250 Hz
-b3 = fir1(filtOrder, 250/(sampFreq/2), 'low'); % Pass frequencies below 250 Hz
+%FIXME One can directly design the bandpass filter
+% SDM: from the help for FIR1:
+    % If Wn is a two-element vector, Wn = [W1 W2], fir1 returns an
+    % order N bandpass filter with passband  W1 < W < W2. You can
+    % also specify B = fir1(N,Wn,'bandpass').  If Wn = [W1 W2],
+% B = fir1(N,Wn,'stop') will design a bandstop filter.
+% b2 = fir1(filtOrder, [150/(sampFreq/2) 250/(sampFreq/2)], 'high'); % Pass frequencies above 150-250 Hz
+% b3 = fir1(filtOrder, 250/(sampFreq/2), 'low'); % Pass frequencies below 250 Hz
 % Apply bandpass filter to low and high cutoff
-filtS2 = fftfilt(b2, sigVec); % low cutoff
-filtS2 = fftfilt(b3, filtS2); % high cutoff
+% filtS2 = fftfilt(b2, sigVec); % low cutoff
+% filtS2 = fftfilt(b3, filtS2); % high cutoff
+%SDM correction
+b2 = fir1(filtOrder, [150, 250]/(sampFreq/2),'bandpass');
+filtS2 = fftfilt(b2,sigVec);
 
 % Design filter 3 to let s3 pass highpass
 b4 = fir1(filtOrder, 250/(sampFreq/2), 'high'); % Pass frequencies above 250 Hz

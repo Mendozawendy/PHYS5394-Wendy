@@ -3,13 +3,14 @@
 addpath ../L4lab
 
 % Signal parameters
-freq0 = 2;  
+freq0 = 20;  
 phi0 = pi/2;
 A = 10;
 % Instantaneous frequency 
 maxFreq = freq0; %Maxmimum is equal to the constant frequency of the sinusoid
 
 %5 times the Nyquist sampling frequency
+%FIXME samplFreq is defined twice (see Matlab warning: yellow squiggle)
 samplFreq = 30; %Hz
 samplFreq = 5*(2*maxFreq);
 samplIntrvl = 1/samplFreq;
