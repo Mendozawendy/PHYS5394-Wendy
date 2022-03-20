@@ -1,6 +1,8 @@
 
 %% Plot the Sinusoidal Signal function
 addpath ../L5Lab/
+%NOTE This path is redundant because you copied gensinusig here. 
+%NOTE The idea is to avoid code duplication and keep only one copy of gensinusig.
 % Signal parameters
 freq0 = 20; %change frequency for the plot of spectogram that matches my expectations   
 phi0 = pi/2;
