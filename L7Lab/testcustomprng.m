@@ -23,18 +23,35 @@ x_n = linspace(sigma-6,mu+6,M);
 y_n = pdf('norm',x_n,sigma,mu); 
 
 %Plotting for PDF & Histogram for Uniform Distribution 
-figure 
-subplot(2,1,1)
-plot(x_u,y_u); 
-title('PDF for uniform distribution between -2, and 1')
-xlabel('Trials')
-ylabel('Values')
+%FIXME From Lab7 Tasks: "On top of each histogram, plot the respective PDFs" 
+% figure 
+% subplot(2,1,1)
+% plot(x_u,y_u); 
+% title('PDF for uniform distribution between -2, and 1')
+% xlabel('Trials')
+% ylabel('Values')
+% 
+% subplot(2,1,2)
+% histogram(ru, 'normalization','pdf')
+% title('Histrogram for uniform distribution trials values')
+% xlabel('Values')
+% ylabel('Probability')
 
-subplot(2,1,2)
+%NOTE See the changes below and implement the same for the normal pdf
+figure
+%subplot(2,1,2)
 histogram(ru, 'normalization','pdf')
-title('Histrogram for uniform distribution trials values')
-xlabel('Values')
-ylabel('Probability')
+%title('Histrogram for uniform distribution trials values')
+% xlabel('Values')
+% ylabel('Probability')
+%subplot(2,1,1)
+hold on;
+plot(x_u,y_u); 
+%title('PDF for uniform distribution between -2, and 1')
+xlabel('x')
+ylabel('p_Y(x)')
+legend('histogram', 'pdf');
+title(['Uniform pdf U(x;',num2str(a),',',num2str(b),')'])
 
 
 
