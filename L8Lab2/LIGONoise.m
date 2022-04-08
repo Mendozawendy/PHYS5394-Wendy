@@ -12,6 +12,7 @@ nSamples = 10*sampFreq;
 timeVec = (0:(nSamples-1))/sampFreq; %Time samples
 
 %Pre-Filtereing S(f<=50)=S(f=50) & S(f>=700)=S(f=700)
+%FIXME these variables are never used!
 lowcutoff = 50; %Hz
 highcutoff = 700; %Hz 
 
@@ -48,6 +49,7 @@ outNoise = sqrt(sampFreq)*fftfilt(b,inNoise);
 figure;
 loglog(f,pxx);
 title('Estimated PSD (pwelch) of LIGO Noise Realization');
+%FIXME Frequency plotted is in Hz, not kHz (= 1000 Hz)
 xlabel('Frequency (kHz)');
 ylabel('PSD'); 
 %SDM plotting the square of the supplied curve to see if it matches
