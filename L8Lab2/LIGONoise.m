@@ -33,8 +33,11 @@ iLIGOS(85,1) = 3000; %Hz
 % Design FIR filter with T(f)= square root of target PSD
 fltrOrdr = 500;
 freqVec = iLIGOS(:,1);
-sqrtPSD = sqrt(iLIGOS(:,2));
-b = fir2(fltrOrdr,freqVec/(sampFreq/2),sqrtPSD);
+%FIXME iLIGOS is already sqrt(PSD); review the lab slides.
+%sqrtPSD = sqrt(iLIGOS(:,2));
+%b = fir2(fltrOrdr,freqVec/(sampFreq/2),sqrtPSD);
+b = fir2(fltrOrdr,freqVec/(sampFreq/2),iLIGOS(:,2));
+
 %Generate a WGN realization and pass it through the designed filter
 inNoise = randn(1,nSamples); %generates nsample realization of zero mean
 outNoise = sqrt(sampFreq)*fftfilt(b,inNoise); 
@@ -47,4 +50,6 @@ loglog(f,pxx);
 title('Estimated PSD (pwelch) of LIGO Noise Realization');
 xlabel('Frequency (kHz)');
 ylabel('PSD'); 
-
+%SDM plotting the square of the supplied curve to see if it matches
+hold on;
+loglog(iLIGOS(:,1),iLIGOS(:,2).^2);

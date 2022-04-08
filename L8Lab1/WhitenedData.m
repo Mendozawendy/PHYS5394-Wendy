@@ -49,7 +49,9 @@ winLenSmpls = floor(winLen*samplFreq);
 ovrlpSmpls = floor(ovrlp*samplFreq);
 [S,F,T]=spectrogram(sigVec,winLenSmpls,ovrlpSmpls,[],samplFreq);
 figure;
-subplot(3,1,1);
+%FIXME you have mistakenly used 3 subplots
+% subplot(3,1,1);
+subplot(2,1,1);
 imagesc(T,F,abs(S)); axis xy;
 title('Spectrogram of Test Data')
 xlabel('Time (sec)');
@@ -64,7 +66,9 @@ ovrlp = 0.07;%sec
 winLenSmpls = floor(winLen*samplFreq);
 ovrlpSmpls = floor(ovrlp*samplFreq);
 [Sout,Fout,Tout]=spectrogram(whitenedData,winLenSmpls,ovrlpSmpls,[],samplFreq);
-subplot(3,1,2);
+%FIXME you have mistakenly used 3 subplots
+% subplot(3,1,2);
+subplot(2,1,2);
 imagesc(Tout,Fout,abs(Sout)); axis xy;
 title('Spectrogram of Whitening Data')
 xlabel('Time (sec)');
