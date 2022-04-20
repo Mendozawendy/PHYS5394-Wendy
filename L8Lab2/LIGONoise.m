@@ -11,11 +11,6 @@ sampFreq = 6000; %Hz
 nSamples = 10*sampFreq;
 timeVec = (0:(nSamples-1))/sampFreq; %Time samples
 
-%Pre-Filtereing S(f<=50)=S(f=50) & S(f>=700)=S(f=700)
-%FIXME these variables are never used!
-lowcutoff = 50; %Hz
-highcutoff = 700; %Hz 
-
 %Low & high cutoff frequency 
 low = iLIGOS(40,2); 
 iLIGOS(1:42,2) = low;
@@ -34,11 +29,8 @@ iLIGOS(85,1) = 3000; %Hz
 % Design FIR filter with T(f)= square root of target PSD
 fltrOrdr = 500;
 freqVec = iLIGOS(:,1);
-%FIXME iLIGOS is already sqrt(PSD); review the lab slides.
-%sqrtPSD = sqrt(iLIGOS(:,2));
-%b = fir2(fltrOrdr,freqVec/(sampFreq/2),sqrtPSD);
-b = fir2(fltrOrdr,freqVec/(sampFreq/2),iLIGOS(:,2));
 
+b = fir2(fltrOrdr,freqVec/(sampFreq/2),iLIGOS(:,2));
 %Generate a WGN realization and pass it through the designed filter
 inNoise = randn(1,nSamples); %generates nsample realization of zero mean
 outNoise = sqrt(sampFreq)*fftfilt(b,inNoise); 
@@ -49,9 +41,8 @@ outNoise = sqrt(sampFreq)*fftfilt(b,inNoise);
 figure;
 loglog(f,pxx);
 title('Estimated PSD (pwelch) of LIGO Noise Realization');
-%FIXME Frequency plotted is in Hz, not kHz (= 1000 Hz)
 xlabel('Frequency (kHz)');
 ylabel('PSD'); 
-%SDM plotting the square of the supplied curve to see if it matches
+%plotting the square of the supplied curve to see if it matches
 hold on;
-loglog(iLIGOS(:,1),iLIGOS(:,2).^2);
+loglog(iLIGOS(:,1),iLIGOS(:,2).^2); 
