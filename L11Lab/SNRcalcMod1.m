@@ -6,12 +6,14 @@
 
 %%
 % Path to folder containing signal and noise generation codes
-addpath 'https://drive.matlab.com/files/DATASCIENCE/statistical Methods/DATASCIENCCE_COURSE/DETEST'
-addpath 'https://drive.matlab.com/files/DATASCIENCE/statistical Methods/DATASCIENCE_COURSE/SIGNALS'
+% addpath 'https://drive.matlab.com/files/DATASCIENCE/statistical Methods/DATASCIENCCE_COURSE/DETEST'
+% addpath 'https://drive.matlab.com/files/DATASCIENCE/statistical Methods/DATASCIENCE_COURSE/SIGNALS'
 %Note for professor: I will add the path for the DATASCIENCE hope it make
 %things easier when running the code
-%addpath ../DATASCIENCE_COURSE/DETEST
-%addpath ../L6Lab/gensinusig.m
+addpath ../DATASCIENCE_COURSE/DETEST
+%FIXME missing path
+addpath ../DATASCIENCE_COURSE/NOISE
+addpath ../L6Lab
 
 % This is the target SNR for the LR
 snr = 10;

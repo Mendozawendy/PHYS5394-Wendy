@@ -4,10 +4,11 @@
 
 %%
 % Path to folder containing signal and noise generation codes
-addpath 'https://drive.matlab.com/files/DATASCIENCE/statistical Methods/DATASCIENCE_COURSE/DETEST'
+%addpath 'https://drive.matlab.com/files/DATASCIENCE/statistical Methods/DATASCIENCE_COURSE/DETEST'
 %Note for professor: I will add the path for the DATASCIENCE hope it make
 %things easier when running the code
-% addpath ../DATASCIENCE_COURSE/DETEST
+%FIXME You only need to use this relative path, not the absolute one above.
+addpath ../DATASCIENCE_COURSE/DETEST
 
 % Read 3 Data.txt realization
 data1 = load('data1.txt','-ascii').';
@@ -37,10 +38,13 @@ glrt2 = glrtqcsig(data2,psdPosFreq,a1,a2,a3);
 glrt3 = glrtqcsig(data3,psdPosFreq,a1,a2,a3);
 
 %Obtain GLRT values for multiple noise realizations
-nH0Data = 90000; %generate M data
+nH0Data = 10000; %generate M data
+%FIXME Incorrect: you were not storing the GLRT values because 'gltrs' was not an array, just a scalar
+gltrs = zeros(1,nH0Data);
 for n = 1:nH0Data
     noiseVec = statgaussnoisegen(nSamples,[posFreq(:),psdPosFreq(:)],100,sampFreq);
-    gltrs = glrtqcsig(noiseVec,psdPosFreq,a1,a2,a3);
+    %SDM Using an array
+    gltrs(n) = glrtqcsig(noiseVec,psdPosFreq,a1,a2,a3);
 end 
 
 % calculate significance
@@ -50,8 +54,9 @@ signf_3 = sum(gltrs>=glrt3)/nH0Data;
 
 disp(signf_1);
 disp(signf_2);
-disp(signf_2);
-
+%FIXME Should be signf_3
+%disp(signf_2);
+disp(signf_3);
 
 
  

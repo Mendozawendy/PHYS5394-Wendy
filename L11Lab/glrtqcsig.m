@@ -1,5 +1,5 @@
 function glrt = glrtqcsig(dataVec,psdPosFreq,a1,a2,a3)
-
+%FIXME Follow the Matlab style for documenting functions; see examples in the DATASCIENCE_COURSE repository for functions (not scripts).
 %% Compute GLRT
 %Generate the unit norm signal (i.e., template). Here, the value used for
 %'A' does not matter because we are going to normalize the signal anyway.
