@@ -1,3 +1,4 @@
+%FIXME You should rename this script to 'testgensinusig_new_handle' or something less generic than 'functionhandle', which could mean anything.
 %%Function handle to plot the time series of the signal for SNR values 10,
 %%12 and 15
 % Signal parameters
@@ -17,7 +18,10 @@ samplIntrvl = 1/samplFreq;
 % Time samples
 timeVec = 0:samplIntrvl:.1;
 % Number of samples
-nSamples = length(dataX); 
+%FIXME Error: dataX was not defined
+%nSamples = length(dataX); 
+%SDM
+nSamples = length(timeVec);
 
 %Function handle to gensinusig_new 
 H = @(snr) gensinusig_new(timeVec, snr, P); 

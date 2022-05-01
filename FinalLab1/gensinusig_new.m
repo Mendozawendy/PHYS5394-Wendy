@@ -1,8 +1,10 @@
+%FIXME No need to put such statements in the code. Documentation of a code should be specific to the code and its purpose.
 %%Objective: Modify the function you wrote for generating your assigned signal to use a ‘struct’ as the
 %input argument for specifying the signal parameters. 
 
 function sigVec = gensinusig_new(dataX,snr,P) 
 % Generate a Sinusoidal signal 
+%FIXME You did not change the description S = GENSINUSIG(X,SNR,FREQ0,PHI0) to that of GENSINUSIG_NEW
 % S = GENSINUSIG(X,SNR,FREQ0,PHI0) 
 % Generate a Sinusoidal signal of S. 
 % data X is the vector of time stamps at which the value of signal is to be
