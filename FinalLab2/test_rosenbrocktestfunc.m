@@ -53,3 +53,26 @@ for lpruns = 1:nRuns
     disp('*****************');
 end
 toc
+
+%FIXME: Added plotting of the fitness function
+figure;
+%Range of each coordinate 
+xRng = ffparams.rmax - ffparams.rmin;
+%Generate grid in XY plane
+[x1,x2] = meshgrid(ffparams.rmin:0.05:ffparams.rmax,ffparams.rmin:0.05:ffparams.rmax);
+%Standardize the coordinates before feeding to the fitness function
+sx1 = (x1-ffparams.rmin)/xRng;
+sx2 = (x2-ffparams.rmin)/xRng;
+%Evaluate fitness values on the grid: each grid point's coordinates occupy
+%one row
+fVal = fitFuncHandle([sx1(:),sx2(:)]);
+%Reshape to turn into a matrix (like the 2D grid)
+fVal = reshape(fVal,[length(x2(:,1)),length(x1(1,:))]);
+%Make surface plot
+surf(x1,x2,fVal,'FaceAlpha',0.5)
+xlabel('first coordinate');
+ylabel('second coordinate');
+zlabel('Fitness value');
+shading interp;
+%SDM
+shading interp;
