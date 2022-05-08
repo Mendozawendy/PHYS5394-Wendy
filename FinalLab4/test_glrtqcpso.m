@@ -1,9 +1,11 @@
 %Test script for glrtacpso for data realization 
 %Path to folder containing signal and noise generation codes
 addpath 'https://drive.matlab.com/files/DATASCIENCE/statistical Methods/DATASCIENCE_COURSE/DETEST'
+addpath 'https://drive.matlab.com/files/DATASCIENCE/statistical Methods/DATASCIENCE_COURSE/SIGNALS'
 addpath 'https://drive.matlab.com/files/SDMBIGDAT19-master/CODES'
 %Path for professor
 % addpath ../DATASCIENCE_COURSE/DETEST 
+% addpath .../DATASCIENCE_COURSE/SIGNALS
 % addpath ../SDMBIGDAT19/CODES 
 % addpath ../FinalLab3
 
