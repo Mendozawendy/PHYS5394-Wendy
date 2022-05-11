@@ -1,17 +1,17 @@
 %%Final Exam-Detection & Estimation 
 
 %Addpath
-addpath https://drive.matlab.com/files/statistical Methods/DATASCIENCE_COURSE/DETEST 
-addpath https://drive.matlab.com/files/statistical Methods/DATASCIENCE_COURSE/MDC
-addpath https://drive.matlab.com/files/SDMBIGDAT19-master/CODES 
-addpath https:/drive.matlab.com/files  
+% addpath https://drive.matlab.com/files/statistical Methods/DATASCIENCE_COURSE/DETEST 
+% addpath https://drive.matlab.com/files/statistical Methods/DATASCIENCE_COURSE/MDC
+% addpath https://drive.matlab.com/files/SDMBIGDAT19-master/CODES 
+% addpath https:/drive.matlab.com/files  
 %Path for professor 
-% ../DATASIENCE_COURSE/DETEST
-% ../DATASCIENCE_COURSE/MDC 
-% ../SDMBIGDAT19-master/CODES 
-% ../FinalLab4 
-% ../FinalLab3
-% ../L11Lab 
+% addpath ../DATASIENCE_COURSE/DETEST
+% addpath ../DATASCIENCE_COURSE/MDC 
+% addpath ../SDMBIGDAT19-master/CODES 
+addpath ../FinalLab4;
+addpath ../FinalLab3;
+addpath ../L11Lab;
 
 %Load training data containing only noise:
 data1 = load('TrainingData.mat'); 
@@ -56,9 +56,13 @@ outStruct = glrtqcpso(inParams,struct('maxSteps',2000),nRuns);
 
 %% Estimated quadratic chirp coefficients & use fitness value from the best
 % rRun. PSO negative of fitness values for minimization 
-a1= num2str(outStruct.bestQcCoefs(1));
-a2= num2str(outStruct.bestQcCoefs(2));
-a3= num2str(outStruct.bestQcCoefs(3)); 
+%FIXME Error: Sending in strings a1, a2, a3 rather than numerical values
+% a1= num2str(outStruct.bestQcCoefs(1));
+% a2= num2str(outStruct.bestQcCoefs(2));
+% a3= num2str(outStruct.bestQcCoefs(3)); 
+a1= outStruct.bestQcCoefs(1);
+a2= outStruct.bestQcCoefs(2);
+a3= outStruct.bestQcCoefs(3); 
 glrt = outStruct.bestFitness; 
 glrt = -glrt;  
 %Maximum Likelihood Ratio test 
@@ -68,6 +72,9 @@ nH0Data = 1000; %Generate data
 n = 0; 
 for i = 1:nH0Data
     noiseVec = statgaussnoisegen(nSamples,[posFreq(:),psdPosFreq(:)],100,sampFreq);
+    %FIXME Error: Sending in strings a1, a2, a3 rather than numerical values
+    %FIXME Bigger error: Should have called glrtqcpso here with inParams.dataY = noiseVec
+    %nglrts = glrtqcsig(noiseVec,psdPosFreq,a1,a2,a3);
     nglrts = glrtqcsig(noiseVec,psdPosFreq,a1,a2,a3);
     if llr <= nglrts
         n = n+1;
